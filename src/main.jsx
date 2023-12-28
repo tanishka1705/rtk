@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ReactDOM from 'react-dom/client';
@@ -25,11 +25,13 @@ const router = createBrowserRouter([
 
 const queryClient = new QueryClient({
     defaultOptions: {
-        queries: {
+        queries:{
             staleTime: 10000,
-        },
-    },
-});
+            refetchOnWindowFocus : false // default - true, when we try to switch windows then new request will go to the server to avoid that we use this and set it to false
+        }
+    }
+})
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={queryClient}>
